@@ -1,0 +1,90 @@
+/* Body styles */
+.wrapper {
+    font-family: Arial, sans-serif; background-color: #98afc7; margin: 0; padding: 0;  scroll-behavior: smooth;
+    padding-top: 3rem;
+}
+
+/* Toolbar styles */
+.toolbar {
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    background-color: #167d97;
+    color: white; 
+    padding: 10px 20px; 
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    z-index: 1000;
+}
+
+.title {
+    font-size: 1.8rem; color: #ece2e2;
+    margin: 0;
+}
+
+/* The button container */
+.divButton {
+    display: flex;
+    gap: 10px;
+}
+
+/* Button styling */
+.buttonHome, .buttonAbout, .buttonContact, .buttonProject {
+    background-color: #444; 
+    color: white; 
+    border: 1px solid #555; 
+    padding: 8px 12px; 
+    font-size: 14px; 
+    cursor: pointer; 
+    border-radius: 5px;
+    transition: background-color 0.50s; 
+}
+
+/* Hover effect for buttons */
+.buttonHome:hover, .buttonAbout:hover, .buttonContact:hover, .buttonProject:hover {
+    background-color: #167d97; 
+}
+
+/* Responsive design for smaller screens (less than 768px) */
+@media (max-width: 768px) {
+    .toolbar {
+        padding: 10px; 
+        flex-direction: column; 
+        align-items: center;  /* Center title */
+    }
+
+    .title {
+        font-size: 1.8rem; 
+        margin-bottom: 10px; 
+    }
+
+    /* Hide the entire button container on mobile */
+    .divButton {
+        display: none; /* Hide all buttons */
+    }
+}
+
+/* Responsive design for very small screens (less than 480px) */
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;  /* Slightly smaller title on very small screens */
+    }
+
+    /* Ensure buttons are still hidden */
+    .divButton {
+        display: none; /* Hide all buttons */
+    }
+}
+
+
+.inputForm {
+	margin: 20px; background-color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+	border-radius: 8px; text-align: center; max-width: 100%; height: auto; border-style: solid;
+    border-color: #6c96b8; border-width: 10px;
+}
+
+
+.footer {
+	background-color: #167d97; color: white; padding: 10px 0; text-align: center; margin-top: 40px;
+}

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>My Maven Web App</title>
+    <link rel="stylesheet" href="/css/maven.css" />
+</h:head>
+<h:body class="wrapper">
+	<div class="toolbar">
+		<h1 class="title">My App</h1>
+		<div class="divButton">
+			<h:commandButton class="buttonHome" value="Home" icon="pi pi-home"
+				onclick="window.location.href='/pages.xhtml'" />
+			<h:commandButton class="buttonAbout" value="About"
+				icon="pi pi-folder-open" />
+			<h:commandButton class="buttonContact" value="Contact"
+				icon="pi pi-mobile" />
+			<h:commandButton class="buttonProject" value="Project"
+				icon="pi pi-sitemap" />
+		</div>
+	</div>
+    
+	<!--Images Skills-->
+	<div class="inputForm">
+	    <p:panelGrid columns="4" layout="grid" styleClass="showcase-text-align-center">
+	      <p:panelGrid columns="2">
+	        <f:facet name="header">
+	          <h5>HTML</h5>
+	            <p:knob foregroundColor="#2196F3" backgroundColor="#495057"
+	                    labelTemplate="{value}%" value="85" />
+	        </f:facet>
+	      </p:panelGrid>
+	
+	      <p:panelGrid columns="2">
+	        <f:facet name="header">
+	          <h5>CSS</h5>
+	            <p:knob foregroundColor="#2196F3" backgroundColor="#495057"
+	                    labelTemplate="{value}%" value="80" />
+	        </f:facet>
+	      </p:panelGrid>
+	
+	      <p:panelGrid columns="2">
+	        <f:facet name="header">
+	          <h5>JAVA</h5>
+	            <p:knob foregroundColor="#2196F3" backgroundColor="#495057"
+	                    labelTemplate="{value}%" value="70" />
+	        </f:facet>
+	      </p:panelGrid>
+	
+	      <p:panelGrid columns="2">
+	        <f:facet name="header">
+	          <h5>JavaScript</h5>
+	            <p:knob foregroundColor="#2196F3" backgroundColor="#495057"
+	                    labelTemplate="{value}%" value="75" />
+	        </f:facet>
+	      </p:panelGrid>
+	    </p:panelGrid>
+	</div>
+	
+ 	<div class="inputForm">
+ 	    <h1>Basic Table List</h1>
+	    <h:commandButton class="buttonProject" value="Add New"
+				         icon="pi pi-sitemap" onclick="PF('dlg').show()" />
+		<h:form id="clientFormTable">
+		    <p:dataTable id="clientTable" value="#{clientBean.clients}" var="client" styleClass="table" paginator="true"
+		                 rows="5" paginatorPosition="both" currentPageReportTemplate="Showing {start} to {end} of {totalRecords}">
+		        <p:column headerText="Client ID">
+		            <h:outputText value="#{client.clientId}" />
+		        </p:column>
+		        <p:column headerText="First Name">
+		            <h:outputText value="#{client.firstName}" />
+		        </p:column>
+		        <p:column headerText="Last Name">
+		            <h:outputText value="#{client.lastName}" />
+		        </p:column>
+		        <p:column headerText="Email">
+		            <h:outputText value="#{client.email}" />
+		        </p:column>
+		        <p:column headerText="Address">
+		            <h:outputText value="#{client.address}" />
+		        </p:column>
+		        <p:column headerText="Age">
+		            <h:outputText value="#{client.age}" />
+		        </p:column>
+		        <p:column headerText="Salary">
+		            <h:outputText value="#{client.salary}" />
+		        </p:column>
+		        <p:column headerText="Actions">
+		            <!-- Edit button -->
+		            <p:commandButton icon="pi pi-pencil" styleClass="rounded-button"
+		                             action="#{clientBean.setNewClient(client)}" 
+		                             update="editClientDialog" 
+		                             oncomplete="PF('editClientDialog').show();" />
+		            
+		            <!-- Delete button -->
+		            <p:commandButton icon="pi pi-times" styleClass="rounded-button ui-button-danger"
+		                             action="#{clientBean.deleteClient(client)}" 
+		                             update="clientTable" />
+		        </p:column>
+		    </p:dataTable>
+		</h:form>
+    </div>
+    
+	<div class="inputForm">
+	   <p:tooltip/>
+       <h:form id="clientForm">
+       	    <p:messages id="messages" showDetail="true" closable="true">
+	            <p:autoUpdate/>
+	        </p:messages>
+			<h1 style="color: #6c96b8;">Basic Input Form</h1>
+			<p:panelGrid columns="4"
+				columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+				layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+
+				<p:row styleClass="my-heading-row">
+
+				</p:row>
+
+				<p:outputLabel for="firstName" value="First Name" />
+				<p:inputText id="firstName" value="#{clientBean.newClient.firstName}" required="true" />
+
+				<p:outputLabel for="lastName" value="Last Name" />
+				<p:inputText id="lastName" value="#{clientBean.newClient.lastName}" required="true" />
+
+				<p:outputLabel for="age" value="Age"  />
+				<p:inputText id="age" value="#{clientBean.newClient.age}" required="true" />
+
+				<p:outputLabel for="email" value="Email"/>
+				<p:inputText id="email" value="#{clientBean.newClient.email}" required="true" />
+
+				<p:outputLabel for="address" value="Address"  />
+				<p:inputTextarea id="address" value="#{clientBean.newClient.address}" required="true" />
+
+				<p:outputLabel for="salary" value="Salary" />
+				<p:inputText id="salary" value="#{clientBean.newClient.salary}" required="true" />
+
+				<p:row>
+					<p:column styleClass="ui-grid-col-12">
+						<p:commandButton styleClass="rounded-button ui-button-success" value="Save" style="width: 20%;"
+						                 action="#{clientBean.addClient}" icon="pi pi-save" update=":clientFormTable:clientTable"/> 
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+	   </h:form>
+	</div>
+	 
+	<!-- Video --> 
+    <div class="inputForm">
+		<p:video value="https://www.w3schools.com/html/mov_bbb.mp4"
+			player="mp4" controls="true" width="800" height="550"
+			onplay="console.log('MP4 Started Playing')"
+			onpause="console.log('MP4 Stopped Playing')">
+	        Your browser does not support the video element.
+	        See: <h:outputLink
+				value="https://www.w3schools.com/html/html5_video.asp">HTML5 Video</h:outputLink>
+		</p:video>
+	</div>
+	
+    <!-- Stack Menu Basket -->
+	<h:form>
+		<p:stack icon="images/basket.png" expanded="true">
+			<p:menuitem value="Home" icon="images/formal.png"
+				onclick="window.location.href='/pages.xhtml'" />
+			<p:menuitem value="About" icon="images/formal.png" />
+			<p:menuitem value="Contact" icon="images/formal.png" />
+			<p:menuitem value="Projects" icon="images/formal.png" />
+		</p:stack>
+	</h:form>
+	
+    <!-- Footer Section -->
+	<div class="footer">
+		<h5>@2025 Hustle and Thrive. All rights
+			reserved.</h5>
+		<!-- Social Media Icons with Links -->
+		<a href="https://www.facebook.com/yourprofile"> <i
+			class="pi pi-facebook"
+			style="font-size: 2rem; margin-left: 10px; color: #333;"></i>
+		</a> <a href="https://github.com/yourprofile"> <i 
+		    class="pi pi-github"
+			style="font-size: 2rem; margin-left: 10px; color: white;"></i>
+		</a> <a href="https://www.linkedin.com/in/yourprofile"> <i
+			class="pi pi-linkedin"
+			style="font-size: 2rem; margin-left: 10px; color: blue;"></i>
+		</a> <a href="https://www.instagram.com/yourprofile"> <i
+			class="pi pi-instagram"
+			style="font-size: 2rem; margin-left: 10px; color: violet;"></i>
+		</a>
+	</div>
+	
+	<!-- Modal Dialog for Editing Client -->
+    <p:dialog id="editClientDialog" header="Edit Client" widgetVar="editClientDialog" modal="true" 
+              showEffect="fade" hideEffect="fade" dynamic="true">
+        <h:form id="clientTable" >
+        <h:panelGrid columns="2">
+            <h:outputLabel for="firstName" value="First Name" />
+            <p:inputText id="firstName" value="#{clientBean.newClient.firstName}" />
+            
+            <h:outputLabel for="lastName" value="Last Name" />
+            <p:inputText id="lastName" value="#{clientBean.newClient.lastName}" />
+            
+            <h:outputLabel for="email" value="Email" />
+            <p:inputText id="email" value="#{clientBean.newClient.email}" />
+            
+            <h:outputLabel for="address" value="Address" />
+            <p:inputText id="address" value="#{clientBean.newClient.address}" />
+            
+            <h:outputLabel for="age" value="Age" />
+            <p:inputText id="age" value="#{clientBean.newClient.age}" />
+            
+            <h:outputLabel for="salary" value="Salary" />
+            <p:inputText id="salary" value="#{clientBean.newClient.salary}" />
+        </h:panelGrid>
+
+        <p:commandButton value="Save" action="#{clientBean.updateClient}" update="clientTable, editClientDialog" />
+        <p:commandButton onclick="PF('editClientDialog').hide();" type="button" style="margin-left: 10px;"
+                         icon="pi pi-times" styleClass="rounded-button ui-button-danger"/>
+        </h:form>
+    </p:dialog>
+    
+    <p:dialog header="Add New" widgetVar="dlg" modal="true" dynamic="true"
+		draggable="false" showEffect="fade"
+		hideEffect="fade">
+
+	</p:dialog>
+</h:body>
+</html>
